@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sentiment Analysis</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+            background-color: #f2f2f2;
+        }
+        textarea {
+            width: 50%;
+            height: 120px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 25px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 30px;
+            font-size: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .positive {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .negative {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .neutral {
+            background-color: #e2e3e5;
+            color: #6c757d;
+        }
+        p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sentiment Analysis Web App</h1>
+    <form method="POST">
+        <textarea name="text" placeholder="Enter your text here..." required></textarea><br>
+        <button type="submit">Analyze</button>
+    </form>
+
+    {% if result %}
+    <div class="result
+        {% if 'Positive' in result %}
+            positive
+        {% elif 'Negative' in result %}
+            negative
+        {% else %}
+            neutral
+        {% endif %}">
+        <h2>Sentiment: {{ result }}</h2>
+        <p>Polarity: {{ polarity }}</p>
+        <p>Subjectivity: {{ subjectivity }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
